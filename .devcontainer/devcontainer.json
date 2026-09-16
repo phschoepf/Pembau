@@ -1,0 +1,36 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "pembau-website-new",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"dockerComposeFile": "docker-compose.yaml",
+	"service": "pembau-website-new",
+	"features": {
+		"ghcr.io/devcontainers-extra/features/claude-code:2": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker": {
+			"moby": false
+		},
+		"ghcr.io/devcontainers/features/node:2": {}
+	},
+	"workspaceFolder": "/workspaces/pembau-website-new",
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		4173,
+		5173
+	],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "rm -rf ~/.claude.json && ln -s ~/.claude-json/.claude.json ~/.claude.json",
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"eamodio.gitlens",
+				"github.vscode-pull-request-github",
+				"mhutchie.git-graph",
+				"tamasfe.even-better-toml"
+			]
+		}
+	},
+	"updateRemoteUserUID": true
+}

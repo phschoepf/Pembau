@@ -1,0 +1,11 @@
+services:
+  pembau-website-new:
+    image: mcr.microsoft.com/devcontainers/typescript-node:4-24-trixie
+    volumes:
+      - ..:/workspaces/pembau-website-new:cached
+      - ~/.claude:/home/node/.claude
+      - ~/.claude-json:/home/node/.claude-json
+      - ~/.config/gh:/home/node/.config/gh
+    command: sleep infinity
+    env_file:
+      - .env
