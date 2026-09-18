@@ -22,12 +22,18 @@ import TextButton from "./Components/TextButton";
 //import Foot from "./menu/Foot";
 import { useNavigate } from "react-router";
 import { CollapseFrame } from "./Components/CollapseFrame";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CollapseFramePercent } from "./Components/CollapseFramePercent";
+import LittleFuturePopup, {
+  isLittleFutureActive,
+} from "./Components/LittleFuturePopup";
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const endeRef = useRef<HTMLDivElement | null>(null);
+
+  // Temporäres Kampagnen-Popup (Little future – kleine Zukunft, Okt. 2026)
+  const [showLittleFuture, setShowLittleFuture] = useState(isLittleFutureActive);
 
   const scrollToRef = (ref: React.RefObject<HTMLDivElement | null>) => {
     // if type ? element, use scrollIntoView.
@@ -45,6 +51,10 @@ const LandingPage = () => {
 
   return (
     <>
+      {showLittleFuture && (
+        <LittleFuturePopup onClose={() => setShowLittleFuture(false)} />
+      )}
+
       {/* früher war die hor. verschiebung und der rotate über position absolute und dann top gemacht. 
       besser aber für alles nur translate verwenden, um den normalen dokumentenflow zu erhalten und vertikale
       positionierung dann über gap machen. */}
