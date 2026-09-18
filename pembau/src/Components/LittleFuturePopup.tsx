@@ -20,6 +20,15 @@ export const isLittleFutureActive = () => {
   }
 };
 
+// Eine Flyer-Zeile pro Span; auf breiten Screens harte Umbrüche wie im Flyer,
+// auf schmalen fließt der Text (siehe CSS .lf-line).
+const Lines = ({ lines }: { lines: readonly string[] }) =>
+  lines.map((line) => (
+    <span className="lf-line" key={line}>
+      {line}
+    </span>
+  ));
+
 interface LittleFuturePopupProps {
   onClose: () => void;
 }
@@ -156,46 +165,42 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
           </div>
           <div className="lf-back-inner">
             <div className="lf-intro">
-              <p>
-                {back.heading}
-                <br />
-                {back.paragraphs[0]}
-              </p>
-              {back.paragraphs.slice(1).map((lines) => (
-                <p key={lines[0].slice(0, 20)}>
-                  {lines.map((line, i) => (
-                    <span key={i}>
-                      {i > 0 && <br />}
-                      {line}
-                    </span>
-                  ))}
+              {back.intro.map((lines) => (
+                <p key={lines[0]}>
+                  <Lines lines={lines} />
                 </p>
               ))}
             </div>
 
             <div className="lf-info">
-              {back.info.map((i) => (
-                <p key={i.label}>
-                  {i.label} {i.text}
+              {back.info.map((lines, i) => (
+                <p key={lines[0]}>
+                  <Lines lines={lines} />
+                  {i === back.info.length - 1 && (
+                    <span className="lf-line">
+                      {back.contact}{" "}
+                      <a href={`mailto:${back.email}`}>{back.email}</a>
+                    </span>
+                  )}
                 </p>
               ))}
-              <p>
-                {back.contact} <a href={`mailto:${back.email}`}>{back.email}</a>
-              </p>
             </div>
 
-            <p className="lf-share">{back.share}</p>
+            <p className="lf-share">
+              <Lines lines={back.share} />
+            </p>
 
             <p className="lf-signup">
-              {back.signupHint}
-              <br />
-              <a
-                href={back.signupUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {back.signupUrl}
-              </a>
+              <Lines lines={back.signup} />
+              <span className="lf-line">
+                <a
+                  href={back.signupUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {back.signupUrl}
+                </a>
+              </span>
             </p>
           </div>
 

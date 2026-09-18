@@ -103,13 +103,12 @@
   inset: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
-  padding: 6.1% 8% 6% 10%; /* Textspalte wie im Flyer: 10 % links, Zeilen bis ~90.5 % */
+  padding: 8.3% 6% 6% 10%; /* Textspalte wie im Flyer (Prozent = Kartenbreite) */
   box-sizing: border-box;
   overflow-y: auto;
   white-space: normal;
   font-size: 2.385cqw; /* 10pt auf 419.25pt Breite, wie im Flyer */
-  line-height: 1.45; /* Flyer: 1.35 – etwas luftiger */
+  line-height: 1.35; /* Zeilenabstand wie im Flyer */
 }
 
 .lf-back-inner > * {
@@ -117,29 +116,37 @@
   margin: 0;
 }
 
-.lf-intro p {
-  margin: 0 0 1.45em 0;
+/* Harte Zeilenumbrüche wie im Flyer, nie automatisch umbrechen */
+.lf-line {
+  display: block;
+  white-space: nowrap;
 }
 
-.lf-intro p:last-child {
-  margin-bottom: 0;
+/* Absatzabstände aus den Grundlinien-Abständen des Flyers (1.35em = eine Zeile) */
+.lf-intro p,
+.lf-info p {
+  margin: 0;
+}
+
+.lf-intro p + p {
+  margin-top: 1.35em;
 }
 
 .lf-info {
   text-align: center;
-  margin-top: 0.5em;
+  margin-top: 2.5em;
 }
 
-.lf-info p {
-  margin: 0 0 0.75em 0;
-}
-
-.lf-info p:last-child {
-  margin-bottom: 0;
+.lf-info p + p {
+  margin-top: 1.05em;
 }
 
 .lf-share {
-  margin-top: 1em;
+  margin-top: 4.2em;
+}
+
+.lf-signup {
+  margin-top: 1.35em;
 }
 
 .lf-card a {
@@ -238,6 +245,34 @@
     padding: 7% 7% 9%;
     font-size: 15px;
     line-height: 1.5;
+  }
+
+  .lf-line {
+    display: inline;
+    white-space: normal;
+  }
+
+  .lf-line::after {
+    content: " ";
+  }
+
+  /* Überschrift bleibt eine eigene Zeile */
+  .lf-intro p:first-child .lf-line:first-child {
+    display: block;
+  }
+
+  .lf-info {
+    margin-top: 1.5em;
+  }
+
+  .lf-info p + p,
+  .lf-intro p + p,
+  .lf-signup {
+    margin-top: 1em;
+  }
+
+  .lf-share {
+    margin-top: 1.5em;
   }
 
   .lf-card.lf-back .lf-info {
