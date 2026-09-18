@@ -66,46 +66,49 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
       {page === 1 ? (
         <div
           className="lf-card lf-front"
-          style={{ backgroundImage: `url(${frontArt})` }}
           onClick={(e) => {
             e.stopPropagation();
             setPage(2);
           }}
         >
+          <div className="lf-art">
+            <img src={frontArt} alt="" />
+          </div>
           {/* Textlayer als SVG im Koordinatensystem des Flyers (A5 in pt):
-              x/y sind die Grundlinien-Koordinaten direkt aus dem PDF. */}
+              x/y sind die Grundlinien-Koordinaten direkt aus dem PDF
+              (CropBox beginnt bei y=8.58pt, ist hier schon eingerechnet). */}
           <svg
             className="lf-front-text"
             viewBox="0 0 419.25 595.5"
             aria-hidden="false"
           >
             <g className="lf-display" fontSize="21.08" letterSpacing="0.63">
-              <text x="227.6" y="48.1">
+              <text x="227.6" y="56.7">
                 {front.day1}
               </text>
-              <text x="263.6" y="47.1">
+              <text x="263.6" y="55.7">
                 {front.day2}
               </text>
-              <text x="319.2" y="45.3" transform="rotate(-3.4 319.2 45.3)">
+              <text x="319.2" y="53.9" transform="rotate(-3.4 319.2 53.9)">
                 {front.month}
               </text>
             </g>
             <g className="lf-display" fontSize="37.96" letterSpacing="1.14">
-              <text x="120.2" y="220.8">
+              <text x="120.2" y="229.4">
                 {front.titleEn}
               </text>
-              <text x="101.3" y="260.9">
+              <text x="101.3" y="269.5">
                 {front.titleDe}
               </text>
             </g>
             <g className="lf-body" fontSize="13.03" letterSpacing="1.11">
-              <text x="107.5" y="287.7">
+              <text x="107.5" y="296.3">
                 {front.tagline1}
               </text>
-              <text x="118.6" y="303.4">
+              <text x="118.6" y="312.0">
                 {front.tagline2}
               </text>
-              <text x="186.9" y="334.9">
+              <text x="186.9" y="343.5">
                 {front.forAll}
               </text>
             </g>
@@ -116,7 +119,7 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
               <text
                 className="lf-body"
                 x="300"
-                y="573.6"
+                y="582.2"
                 fontSize="9.05"
                 style={{ letterSpacing: "0.129em" }}
               >
@@ -146,9 +149,11 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
       ) : (
         <div
           className="lf-card lf-back lf-body"
-          style={{ backgroundImage: `url(${backBg})` }}
           onClick={(e) => e.stopPropagation()}
         >
+          <div className="lf-art">
+            <img src={backBg} alt="" />
+          </div>
           <div className="lf-back-inner">
             <div className="lf-intro">
               <p>
@@ -156,8 +161,15 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
                 <br />
                 {back.paragraphs[0]}
               </p>
-              {back.paragraphs.slice(1).map((p) => (
-                <p key={p.slice(0, 20)}>{p}</p>
+              {back.paragraphs.slice(1).map((lines) => (
+                <p key={lines[0].slice(0, 20)}>
+                  {lines.map((line, i) => (
+                    <span key={i}>
+                      {i > 0 && <br />}
+                      {line}
+                    </span>
+                  ))}
+                </p>
               ))}
             </div>
 

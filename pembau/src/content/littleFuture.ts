@@ -22,10 +22,19 @@ export const littleFutureFlyer = {
   // Seite 2 (Rückseite) – in Lesereihenfolge des Flyers
   back: {
     heading: "Little future – Kleine Zukunft!",
+    // Absätze; innere Arrays = harte Zeilenumbrüche wie im Flyer
     paragraphs: [
-      "Wir wagen einen kleinen Blick nach vorne in eine kleine Zukunft, in der wir nicht alles alleine können müssen. In der Wissen die Runde macht, Hände Dinge zeigen und Menschen die Talente der anderen wertschätzen - egal wie gewöhnlich oder extravagant!",
-      "Die Kleine Zukunft ist ein Festival für genau das: fürs Zusammenkommen, Ausprobieren und Weitergeben. Hier treffen gereifte Fähigkeiten auf halbreife Ideen, leise Talente auf laute Experimente. Du kannst etwas mitbringen oder einfach auftauchen und schauen, was passiert. Beides ist mehr als willkommen! Vielleicht lernst du etwas, das du nie gesucht hast. Vielleicht zeigst du etwas, von dem du dachtest, es sei nichts Besonderes.",
-      "Eingeladen sind alle – Kinder, Erwachsene, Neugierige, Skeptische, Allein-Kommende und Gemeinsam-Anreisende.",
+      [
+        "Wir wagen einen kleinen Blick nach vorne in eine kleine Zukunft, in der wir nicht alles alleine können müssen. In der Wissen die Runde macht, Hände Dinge zeigen und Menschen die Talente der anderen wertschätzen - egal wie gewöhnlich oder extravagant!",
+      ],
+      [
+        "Die Kleine Zukunft ist ein Festival für genau das: fürs Zusammenkommen, Ausprobieren und Weitergeben. Hier treffen gereifte Fähigkeiten auf halbreife Ideen, leise Talente auf laute Experimente. Du kannst etwas mitbringen oder einfach auftauchen und schauen, was passiert. Beides ist mehr als willkommen!",
+        "Vielleicht lernst du etwas, das du nie gesucht hast. Vielleicht zeigst du etwas, von dem du dachtest, es sei nichts Besonderes.",
+      ],
+      [
+        "Eingeladen sind alle – Kinder, Erwachsene, Neugierige,",
+        "Skeptische, Allein-Kommende und Gemeinsam-Anreisende.",
+      ],
     ],
     info: [
       { label: "Wann?", text: "Am 3. & 4. Oktober, jeweils von 11 bis 19 Uhr" },
