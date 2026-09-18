@@ -11,14 +11,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2vh;
   background: rgba(0, 0, 0, 0.65);
   padding: 2vh 4vw;
 }
 
 .lf-card {
   position: relative;
-  width: min(92vw, 86vh / 1.4204);
+  width: min(92vw, 90vh / 1.4204);
   aspect-ratio: 419.25 / 595.5;
   container-type: inline-size;
   background-color: #cfe1f5;
@@ -162,22 +161,20 @@
 
 /* ---------- Steuerung ---------- */
 
-.lf-card .lf-close {
+.lf-card .lf-round {
   position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(40%, -40%);
   width: 7cqw;
   height: 7cqw;
-  min-width: 28px;
-  min-height: 28px;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
   border: none;
   border-radius: 50%;
   background: #2e044c;
   color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   font-family: "DM Sans", sans-serif;
-  font-size: max(4cqw, 16px);
+  font-size: max(4cqw, 18px);
   line-height: 1;
   cursor: pointer;
   display: flex;
@@ -186,51 +183,21 @@
   white-space: nowrap;
 }
 
-.lf-close:hover {
+.lf-card .lf-round:hover {
   background: #ff6400;
 }
 
+.lf-close {
+  top: 0;
+  right: 0;
+  transform: translate(40%, -40%);
+}
+
+/* Blättern: unten mittig im Flyer */
 .lf-nav {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 700;
-  color: #fff;
-}
-
-.lf-nav button {
-  border: none;
-  background: #1a1a1a;
-  color: #fff;
-  font: inherit;
-  padding: 0.6em 1.2em;
-  cursor: pointer;
-}
-
-.lf-nav button:hover:not(:disabled) {
-  color: #ff6400;
-}
-
-.lf-nav button:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
-
-.lf-dots {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.lf-dots span {
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-}
-
-.lf-dots span.active {
-  background: #ff6400;
+  bottom: 1.5%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* ---------- Schmale Screens: Seite 2 ohne A5-Format, dafür lesbar ---------- */
@@ -242,7 +209,7 @@
   }
 
   .lf-back-inner {
-    padding: 7% 7% 9%;
+    padding: 7% 7% 16%; /* unten Platz für den Zurück-Button */
     font-size: 15px;
     line-height: 1.5;
   }
@@ -277,10 +244,5 @@
 
   .lf-card.lf-back .lf-info {
     text-align: left;
-  }
-
-  /* Schließen geht hier über die Nav-Leiste, Escape oder Klick auf den Hintergrund */
-  .lf-card.lf-back .lf-close {
-    display: none;
   }
 }

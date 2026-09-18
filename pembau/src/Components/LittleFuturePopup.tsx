@@ -145,7 +145,7 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
           />
 
           <button
-            className="lf-close"
+            className="lf-round lf-close"
             aria-label="Schließen"
             onClick={(e) => {
               e.stopPropagation();
@@ -153,6 +153,16 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
             }}
           >
             ×
+          </button>
+          <button
+            className="lf-round lf-nav"
+            aria-label="Weiter zur Rückseite"
+            onClick={(e) => {
+              e.stopPropagation();
+              setPage(2);
+            }}
+          >
+            →
           </button>
         </div>
       ) : (
@@ -204,24 +214,22 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
             </p>
           </div>
 
-          <button className="lf-close" aria-label="Schließen" onClick={close}>
+          <button
+            className="lf-round lf-close"
+            aria-label="Schließen"
+            onClick={close}
+          >
             ×
+          </button>
+          <button
+            className="lf-round lf-nav"
+            aria-label="Zurück zur Vorderseite"
+            onClick={() => setPage(1)}
+          >
+            ←
           </button>
         </div>
       )}
-
-      <div className="lf-nav" onClick={(e) => e.stopPropagation()}>
-        <button onClick={() => setPage(1)} disabled={page === 1}>
-          ← ZURÜCK
-        </button>
-        <div className="lf-dots" aria-hidden="true">
-          <span className={page === 1 ? "active" : ""} />
-          <span className={page === 2 ? "active" : ""} />
-        </div>
-        <button onClick={() => (page === 1 ? setPage(2) : close())}>
-          {page === 1 ? "WEITER →" : "SCHLIESSEN"}
-        </button>
-      </div>
     </div>
   );
 };
