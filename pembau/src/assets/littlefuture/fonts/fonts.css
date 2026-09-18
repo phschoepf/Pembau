@@ -1,0 +1,29 @@
+/* Schriften aus dem "Little future"-Flyer. Es sind die aus dem PDF extrahierten Subsets:
+   sie enthalten genau die Glyphen, die im Flyertext vorkommen (plus ein nachträglich
+   eingefügtes Leerzeichen mit der Wortabstands-Breite aus dem Flyer, kein ß).
+   Das ß fällt daher auf die nächste Schrift in der font-family-Liste zurück –
+   genau wie im PDF, wo das ß aus Noto Sans kommt. */
+
+@font-face {
+  font-family: "Meadow Bloom";
+  src: url("./MeadowBloom-subset.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "UKIJ Qolyazma Tuz";
+  src: url("./UKIJQolyazmaTuz-subset.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Nur das ß, wie im Flyer */
+@font-face {
+  font-family: "Noto Sans Eszett";
+  src: url("./NotoSans-eszett.woff2") format("woff2");
+  unicode-range: U+00DF;
+  font-display: swap;
+}

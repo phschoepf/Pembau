@@ -1,0 +1,248 @@
+/* Popup für die "Little future – kleine Zukunft"-Kampagne.
+   Die Karte hat das A5-Seitenverhältnis des Flyers (419.25 x 595.5 pt).
+   Alle Schriftgrößen sind in cqw (Kartenbreite = 100cqw = 419.25pt), alle Positionen in %
+   der Karte, direkt aus den Textkoordinaten des PDFs übernommen. */
+
+.lf-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 2vh 4vw;
+}
+
+.lf-card {
+  position: relative;
+  width: min(92vw, 90vh / 1.4204);
+  aspect-ratio: 419.25 / 595.5;
+  container-type: inline-size;
+  background-color: #cfe1f5;
+  color: #2e044c;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  user-select: text;
+}
+
+.lf-card > * {
+  position: absolute;
+  margin: 0;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Artwork füllt wie im PDF exakt die Seite */
+.lf-art {
+  inset: 0;
+  overflow: hidden;
+}
+
+.lf-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* Schriften */
+.lf-display {
+  font-family: "Meadow Bloom", sans-serif;
+}
+
+.lf-body {
+  font-family: "UKIJ Qolyazma Tuz", "Noto Sans Eszett", sans-serif;
+  letter-spacing: 0.085em; /* Laufweite wie im Flyer */
+}
+
+/* ---------- Seite 1 ---------- */
+
+.lf-card.lf-front {
+  cursor: pointer;
+}
+
+.lf-front-text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: #2e044c;
+  overflow: visible;
+}
+
+.lf-front-text a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.lf-front-text a:hover text {
+  fill: #ff6400;
+}
+
+.lf-logo {
+  left: 2.5%;
+  top: 93.6%;
+  width: 10.2%;
+  height: auto;
+}
+
+.lf-eu {
+  left: 15.5%;
+  top: 94.5%;
+  width: 25.2%;
+  height: auto;
+}
+
+/* ---------- Seite 2 ---------- */
+
+/* Fließender Textspalten-Aufbau; Ränder und Abstände orientieren sich am Flyer. */
+.lf-back-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 8.3% 6% 6% 10%; /* Textspalte wie im Flyer (Prozent = Kartenbreite) */
+  box-sizing: border-box;
+  overflow-y: auto;
+  white-space: normal;
+  font-size: 2.385cqw; /* 10pt auf 419.25pt Breite, wie im Flyer */
+  line-height: 1.35; /* Zeilenabstand wie im Flyer */
+}
+
+.lf-back-inner > * {
+  position: static;
+  margin: 0;
+}
+
+/* Harte Zeilenumbrüche wie im Flyer, nie automatisch umbrechen */
+.lf-line {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Absatzabstände aus den Grundlinien-Abständen des Flyers (1.35em = eine Zeile) */
+.lf-intro p,
+.lf-info p {
+  margin: 0;
+}
+
+.lf-intro p + p {
+  margin-top: 1.35em;
+}
+
+.lf-info {
+  text-align: center;
+  margin-top: 2.5em;
+}
+
+.lf-info p + p {
+  margin-top: 1.05em;
+}
+
+.lf-share {
+  margin-top: 4.2em;
+}
+
+.lf-signup {
+  margin-top: 1.35em;
+}
+
+.lf-card a {
+  color: inherit;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.lf-card a:hover {
+  color: #ff6400;
+}
+
+/* ---------- Steuerung ---------- */
+
+.lf-card .lf-round {
+  position: absolute;
+  width: 7cqw;
+  height: 7cqw;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #2e044c;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  font-family: "DM Sans", sans-serif;
+  font-size: max(4cqw, 18px);
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.lf-card .lf-round:hover {
+  background: #ff6400;
+}
+
+.lf-close {
+  top: 0;
+  right: 0;
+  transform: translate(40%, -40%);
+}
+
+/* Blättern: unten mittig im Flyer */
+.lf-nav {
+  bottom: 1.5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ---------- Schmale Screens: Seite 2 ohne A5-Format, dafür lesbar ---------- */
+
+@media (max-width: 640px) {
+  .lf-card.lf-back {
+    aspect-ratio: auto;
+    height: 80vh;
+  }
+
+  .lf-back-inner {
+    padding: 7% 7% 16%; /* unten Platz für den Zurück-Button */
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .lf-line {
+    display: inline;
+    white-space: normal;
+  }
+
+  .lf-line::after {
+    content: " ";
+  }
+
+  /* Überschrift bleibt eine eigene Zeile */
+  .lf-intro p:first-child .lf-line:first-child {
+    display: block;
+  }
+
+  .lf-info {
+    margin-top: 1.5em;
+  }
+
+  .lf-info p + p,
+  .lf-intro p + p,
+  .lf-signup {
+    margin-top: 1em;
+  }
+
+  .lf-share {
+    margin-top: 1.5em;
+  }
+
+  .lf-card.lf-back .lf-info {
+    text-align: left;
+  }
+}
