@@ -1,18 +1,18 @@
 //Images, alle hier importen für Übersicht!
 import NiceTryImg from "./assets/lp1.webp";
-import NiceTryCollapsedImg from "./assets/NiceTryTrBljpg.webp";
+//import NiceTryCollapsedImg from "./assets/NiceTryTrBljpg.webp";
 
 import AussichtImg from "./assets/lp2.webp";
-import AussichtCollapsedImg from "./assets/AussichtBrTl.webp";
+//import AussichtCollapsedImg from "./assets/AussichtBrTl.webp";
 import GestaltenImg from "./assets/lp3.webp";
-import GestaltenCollapsedImg from "./assets/GestaltenBrTl.webp";
+//import GestaltenCollapsedImg from "./assets/GestaltenBrTl.webp";
 //import KPKPCollapsedImage from "./assets/KPKPBl.webp";
 //import KPKPImg from "./assets/KPKP.webp";
 //import MithelfenImg from "./assets/Mithelfen.webp";
 //import MithelfenCollapsedImage from "./assets/MithelfenBr.webp";
 
 // Components
-import ImageFrameJPG from "./Components/ImageFrameJPG";
+//import ImageFrameJPG from "./Components/ImageFrameJPG";
 import TextFrameAussicht from "./Customframes/TextFrameAussicht";
 import TextFrameGestalten from "./Customframes/TextFrameGestalten";
 //import KeinProgrammFrame from "./Customframes/KeinProgrammFrame";
