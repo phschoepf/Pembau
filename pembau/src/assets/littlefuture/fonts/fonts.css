@@ -1,6 +1,7 @@
 /* Schriften aus dem "Little future"-Flyer. Es sind die aus dem PDF extrahierten Subsets:
-   sie enthalten genau die Glyphen, die im Flyertext vorkommen (kein Leerzeichen, kein ß).
-   Leerzeichen und ß fallen daher auf die nächste Schrift in der font-family-Liste zurück –
+   sie enthalten genau die Glyphen, die im Flyertext vorkommen (plus ein nachträglich
+   eingefügtes Leerzeichen mit der Wortabstands-Breite aus dem Flyer, kein ß).
+   Das ß fällt daher auf die nächste Schrift in der font-family-Liste zurück –
    genau wie im PDF, wo das ß aus Noto Sans kommt. */
 
 @font-face {

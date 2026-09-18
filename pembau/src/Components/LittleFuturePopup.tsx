@@ -72,28 +72,74 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
             setPage(2);
           }}
         >
-          <span className="lf-display lf-day1">{front.day1}</span>
-          <span className="lf-display lf-day2">{front.day2}</span>
-          <span className="lf-display lf-month">{front.month}</span>
-
-          <span className="lf-display lf-title-en">{front.titleEn}</span>
-          <span className="lf-display lf-title-de">{front.titleDe}</span>
-
-          <span className="lf-body lf-tagline1">{front.tagline1}</span>
-          <span className="lf-body lf-tagline2">{front.tagline2}</span>
-          <span className="lf-body lf-forall">{front.forAll}</span>
+          {/* Textlayer als SVG im Koordinatensystem des Flyers (A5 in pt):
+              x/y sind die Grundlinien-Koordinaten direkt aus dem PDF. */}
+          <svg
+            className="lf-front-text"
+            viewBox="0 0 419.25 595.5"
+            aria-hidden="false"
+          >
+            <g className="lf-display" fontSize="21.08" letterSpacing="0.63">
+              <text x="227.6" y="48.1">
+                {front.day1}
+              </text>
+              <text x="263.6" y="47.1">
+                {front.day2}
+              </text>
+              <text x="319.2" y="45.3" transform="rotate(-3.4 319.2 45.3)">
+                {front.month}
+              </text>
+            </g>
+            <g className="lf-display" fontSize="37.96" letterSpacing="1.14">
+              <text x="120.2" y="220.8">
+                {front.titleEn}
+              </text>
+              <text x="101.3" y="260.9">
+                {front.titleDe}
+              </text>
+            </g>
+            <g className="lf-body" fontSize="13.03" letterSpacing="1.11">
+              <text x="107.5" y="287.7">
+                {front.tagline1}
+              </text>
+              <text x="118.6" y="303.4">
+                {front.tagline2}
+              </text>
+              <text x="186.9" y="334.9">
+                {front.forAll}
+              </text>
+            </g>
+            <a
+              href={`mailto:${front.email}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <text
+                className="lf-body"
+                x="300"
+                y="573.6"
+                fontSize="9.05"
+                style={{ letterSpacing: "0.129em" }}
+              >
+                {front.email}
+              </text>
+            </a>
+          </svg>
 
           <img className="lf-logo" src={logo} alt="Pembau" />
-          <img className="lf-eu" src={euBadge} alt="Co-funded by the European Union" />
-          <a
-            className="lf-body lf-email-front"
-            href={`mailto:${front.email}`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {front.email}
-          </a>
+          <img
+            className="lf-eu"
+            src={euBadge}
+            alt="Co-funded by the European Union"
+          />
 
-          <button className="lf-close" aria-label="Schließen" onClick={(e) => { e.stopPropagation(); close(); }}>
+          <button
+            className="lf-close"
+            aria-label="Schließen"
+            onClick={(e) => {
+              e.stopPropagation();
+              close();
+            }}
+          >
             ×
           </button>
         </div>
@@ -103,37 +149,43 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
           style={{ backgroundImage: `url(${backBg})` }}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="lf-intro">
-            <p>
-              {back.heading}
-              <br />
-              {back.paragraphs[0]}
-            </p>
-            {back.paragraphs.slice(1).map((p) => (
-              <p key={p.slice(0, 20)}>{p}</p>
-            ))}
-          </div>
-
-          <div className="lf-info">
-            {back.info.map((i) => (
-              <p key={i.label}>
-                {i.label} {i.text}
+          <div className="lf-back-inner">
+            <div className="lf-intro">
+              <p>
+                {back.heading}
+                <br />
+                {back.paragraphs[0]}
               </p>
-            ))}
-            <p>
-              {back.contact} <a href={`mailto:${back.email}`}>{back.email}</a>
+              {back.paragraphs.slice(1).map((p) => (
+                <p key={p.slice(0, 20)}>{p}</p>
+              ))}
+            </div>
+
+            <div className="lf-info">
+              {back.info.map((i) => (
+                <p key={i.label}>
+                  {i.label} {i.text}
+                </p>
+              ))}
+              <p>
+                {back.contact} <a href={`mailto:${back.email}`}>{back.email}</a>
+              </p>
+            </div>
+
+            <p className="lf-share">{back.share}</p>
+
+            <p className="lf-signup">
+              {back.signupHint}
+              <br />
+              <a
+                href={back.signupUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {back.signupUrl}
+              </a>
             </p>
           </div>
-
-          <p className="lf-share">{back.share}</p>
-
-          <p className="lf-signup">
-            {back.signupHint}
-            <br />
-            <a href={back.signupUrl} target="_blank" rel="noopener noreferrer">
-              {back.signupUrl}
-            </a>
-          </p>
 
           <button className="lf-close" aria-label="Schließen" onClick={close}>
             ×

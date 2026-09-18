@@ -21,17 +21,12 @@
   width: min(92vw, 86vh / 1.4204);
   aspect-ratio: 419.25 / 595.5;
   container-type: inline-size;
-  overflow: hidden;
   background-color: #cfe1f5;
   background-size: cover;
   background-position: center;
   color: #2e044c;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   user-select: text;
-}
-
-.lf-card.lf-front {
-  cursor: pointer;
 }
 
 .lf-card > * {
@@ -48,33 +43,31 @@
 
 .lf-body {
   font-family: "UKIJ Qolyazma Tuz", "Noto Sans Eszett", sans-serif;
+  letter-spacing: 0.085em; /* Laufweite wie im Flyer */
 }
 
 /* ---------- Seite 1 ---------- */
 
-.lf-day1 { left: 54.3%; top: 5.6%; font-size: 5.03cqw; }
-.lf-day2 { left: 62.9%; top: 5.4%; font-size: 5.03cqw; }
-.lf-month {
-  left: 76.1%;
-  top: 5.1%;
-  font-size: 5.03cqw;
-  transform: rotate(-3deg);
-  transform-origin: left bottom;
+.lf-card.lf-front {
+  cursor: pointer;
 }
 
-.lf-title-en { left: 28.7%; top: 32.6%; font-size: 9.06cqw; }
-.lf-title-de { left: 24.2%; top: 39.3%; font-size: 9.06cqw; }
+.lf-front-text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: #2e044c;
+  overflow: visible;
+}
 
-.lf-tagline1 { left: 25.7%; top: 46.3%; font-size: 3.1cqw; }
-.lf-tagline2 { left: 28.3%; top: 49.0%; font-size: 3.1cqw; }
-.lf-forall   { left: 44.6%; top: 54.2%; font-size: 3.1cqw; }
+.lf-front-text a {
+  cursor: pointer;
+  text-decoration: none;
+}
 
-.lf-email-front {
-  right: 3.2%;
-  top: 94.9%;
-  font-size: 2.15cqw;
-  letter-spacing: 0.32em;
-  color: inherit;
+.lf-front-text a:hover text {
+  fill: #ff6400;
 }
 
 .lf-logo {
@@ -93,20 +86,28 @@
 
 /* ---------- Seite 2 ---------- */
 
-.lf-card.lf-back > * {
+/* Fließender Textspalten-Aufbau; Ränder und Abstände orientieren sich am Flyer. */
+.lf-back-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  padding: 4.7% 10% 6%;
+  box-sizing: border-box;
+  overflow-y: auto;
   white-space: normal;
-  font-size: 2.55cqw; /* Flyer: 2.385cqw (10pt) – leicht vergrößert für Lesbarkeit */
-  line-height: 1.34;
+  font-size: 2.5cqw; /* Flyer: 2.385cqw (10pt) */
+  line-height: 1.45; /* Flyer: 1.35 – etwas luftiger */
 }
 
-.lf-intro {
-  left: 10%;
-  top: 4.7%;
-  width: 82%;
+.lf-back-inner > * {
+  position: static;
+  margin: 0;
 }
 
 .lf-intro p {
-  margin: 0 0 1.34em 0;
+  margin: 0 0 1.45em 0;
 }
 
 .lf-intro p:last-child {
@@ -114,11 +115,8 @@
 }
 
 .lf-info {
-  left: 8%;
-  width: 84%;
-  top: 45.2%;
   text-align: center;
-  line-height: 1.25;
+  margin-top: 0.5em;
 }
 
 .lf-info p {
@@ -130,15 +128,7 @@
 }
 
 .lf-share {
-  left: 10.5%;
-  top: 66.6%;
-  width: 79%;
-}
-
-.lf-signup {
-  left: 10.5%;
-  top: 82%;
-  width: 79%;
+  margin-top: 1em;
 }
 
 .lf-card a {
@@ -154,10 +144,11 @@
 
 /* ---------- Steuerung ---------- */
 
-.lf-close {
+.lf-card .lf-close {
   position: absolute;
-  top: 2%;
-  right: 2.5%;
+  top: 0;
+  right: 0;
+  transform: translate(40%, -40%);
   width: 7cqw;
   height: 7cqw;
   min-width: 28px;
@@ -166,6 +157,7 @@
   border-radius: 50%;
   background: #2e044c;
   color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   font-family: "DM Sans", sans-serif;
   font-size: max(4cqw, 16px);
   line-height: 1;
@@ -223,31 +215,22 @@
   background: #ff6400;
 }
 
-/* ---------- Schmale Screens: Seite 2 fließend statt A5-Layout ---------- */
+/* ---------- Schmale Screens: Seite 2 ohne A5-Format, dafür lesbar ---------- */
 
 @media (max-width: 640px) {
   .lf-card.lf-back {
     aspect-ratio: auto;
     height: 80vh;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.4em;
-    padding: 7% 7% 9%;
-    box-sizing: border-box;
-    font-size: 15px;
   }
 
-  .lf-card.lf-back > * {
-    position: static;
-    width: auto;
-    font-size: inherit;
-    line-height: 1.4;
+  .lf-back-inner {
+    padding: 7% 7% 9%;
+    font-size: 15px;
+    line-height: 1.5;
   }
 
   .lf-card.lf-back .lf-info {
     text-align: left;
-    line-height: 1.4;
   }
 
   /* Schließen geht hier über die Nav-Leiste, Escape oder Klick auf den Hintergrund */
