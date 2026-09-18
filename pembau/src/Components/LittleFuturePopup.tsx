@@ -155,7 +155,7 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
             ×
           </button>
           <button
-            className="lf-round lf-nav"
+            className="lf-round lf-nav-front"
             aria-label="Weiter zur Rückseite"
             onClick={(e) => {
               e.stopPropagation();
@@ -222,7 +222,7 @@ const LittleFuturePopup = ({ onClose }: LittleFuturePopupProps) => {
             ×
           </button>
           <button
-            className="lf-round lf-nav"
+            className="lf-round lf-nav-back"
             aria-label="Zurück zur Vorderseite"
             onClick={() => setPage(1)}
           >

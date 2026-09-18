@@ -194,8 +194,14 @@
 }
 
 /* Blättern: unten mittig im Flyer */
-.lf-nav {
-  bottom: 1.5%;
+.lf-nav-front {
+  bottom: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.lf-nav-back {
+  bottom: 3%;
   left: 50%;
   transform: translateX(-50%);
 }
